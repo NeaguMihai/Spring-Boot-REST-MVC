@@ -1,7 +1,9 @@
 package com.sruitshop.api.v1.mapper;
 
-import com.sruitshop.api.v1.model.CategoryDTO;
-import com.sruitshop.domain.Category;
+
+import com.fruitshop.api.v1.mapper.CategoryMapper;
+import com.fruitshop.api.v1.model.CategoryDTO;
+import com.fruitshop.domain.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
