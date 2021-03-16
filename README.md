@@ -1,2 +1,2 @@
 # Spring-Boot-REST-MVC
-Spring boot rest mvc demo tutorial
+Spring boot rest tutorial for creating REST endpoints
