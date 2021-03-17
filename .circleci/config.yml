@@ -13,6 +13,8 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - setup_remote_docker:
+         docker_layer_caching: true
       # Use mvn clean and package as the standard maven build phase
 #      - run:
 #          name: Build
@@ -23,7 +25,8 @@ jobs:
 #          command: mvn test
       - run:
           name: Send to CodeCov
-          command: bash pwd
+          command: |
+            pwd
 
 workflows:
   # Below is the definition of your workflow.
