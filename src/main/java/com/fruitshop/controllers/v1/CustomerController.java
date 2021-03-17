@@ -6,9 +6,7 @@ import com.fruitshop.services.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/api/v1/customers")
@@ -34,4 +32,15 @@ public class CustomerController {
                 HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<CustomerDTO> createNewCustomer(@RequestBody CustomerDTO customerDTO) {
+        return new ResponseEntity<>(customerService.createCustomer(customerDTO), HttpStatus.CREATED);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<CustomerDTO> updateCustomerByDTO(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
+        if(customerService.getCustomerById(id) != null)
+            customerDTO.setCustomer_url("/api/v1/customers/" +id);
+        return  new ResponseEntity<>(customerService.createCustomer(customerDTO), HttpStatus.CREATED);
+    }
 }

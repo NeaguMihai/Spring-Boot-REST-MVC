@@ -40,10 +40,10 @@ public class Bootstrap implements CommandLineRunner {
 
         categoryRepository.saveAll(Arrays.asList(fruits, dried, fresh, exotic, nuts));
 
-        Customer c1 = Customer.builder().fName("John1").lName("Doe1").build();
-        Customer c2 = Customer.builder().fName("John2").lName("Doe2").build();
-        Customer c3 = Customer.builder().fName("John3").lName("Doe3").build();
-        Customer c4 = Customer.builder().fName("John4").lName("Doe4").build();
+        Customer c1 = Customer.builder().firstName("John1").lastName("Doe1").build();
+        Customer c2 = Customer.builder().firstName("John2").lastName("Doe2").build();
+        Customer c3 = Customer.builder().firstName("John3").lastName("Doe3").build();
+        Customer c4 = Customer.builder().firstName("John4").lastName("Doe4").build();
 
         customerRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
 

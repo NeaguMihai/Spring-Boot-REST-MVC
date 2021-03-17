@@ -15,12 +15,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.fruitshop.controllers.v1.AbstractRESTTestHelper.asJsonString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -91,6 +92,58 @@ class CustomerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_N1)))
                 .andExpect(jsonPath("$.lastname", equalTo(LAST_N1)));
+
+    }
+
+    @Test
+    public void createNewCustomer() throws Exception {
+
+        CustomerDTO customerDTO  = CustomerDTO
+                .builder()
+                .firstname(FIRST_N1)
+                .lastname(LAST_N1)
+                .build();
+        CustomerDTO returned  = CustomerDTO
+                .builder()
+                .firstname(FIRST_N1)
+                .lastname(LAST_N1)
+                .customer_url(URL1)
+                .build();
+
+        when(customerService.createCustomer(customerDTO)).thenReturn(returned);
+
+        mockMvc.perform(post("/api/v1/customers/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customerDTO)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.firstname", equalTo(FIRST_N1)))
+                .andExpect(jsonPath("$.lastname", equalTo(LAST_N1)));
+
+    }
+
+    @Test
+    public void updateCustomerByDTOTest() throws Exception {
+        CustomerDTO customerDTOExists = CustomerDTO
+                .builder()
+                .firstname(FIRST_N1)
+                .lastname(LAST_N1)
+                .build();
+        CustomerDTO customerDTONotExists = CustomerDTO
+                .builder()
+                .firstname(FIRST_N1)
+                .lastname(LAST_N1)
+                .customer_url(URL1)
+                .build();
+
+        when(customerService.createCustomer(customerDTOExists)).thenReturn(customerDTONotExists);
+
+        mockMvc.perform(put("/api/v1/customers/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customerDTOExists)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.firstname", equalTo(FIRST_N1)))
+                .andExpect(jsonPath("$.lastname", equalTo(LAST_N1)))
+                .andExpect(jsonPath("$.customer_url", equalTo(URL1)));
 
     }
 }
