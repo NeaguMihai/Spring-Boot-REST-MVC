@@ -21,8 +21,8 @@ jobs:
 #      - run:
 #          name: Test
 #          command: mvn test
-#      - run:
-#          name: Send to CodeCov
+      - run:
+          name: Send to CodeCov
           command: bash pwd
 
 workflows:
