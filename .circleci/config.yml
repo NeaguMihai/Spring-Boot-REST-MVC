@@ -1,5 +1,6 @@
 version: 2.1
 
+
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test:
@@ -20,6 +21,9 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codevoc.io/bash)
 
 workflows:
   # Below is the definition of your workflow.
