@@ -41,7 +41,7 @@ class CategoryServiceImplTest {
 
         List<Category> categories = Arrays.asList(new Category(), new Category(), new Category());
 
-        when(categoryRepository.getAllCategories()).thenReturn(categories);
+        when(categoryRepository.findAll()).thenReturn(categories);
 
         List<CategoryDTO> categoryDTOS = categoryService.getAllCategories();
 
