@@ -16,18 +16,29 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - setup_remote_docker:
-         docker_layer_caching: true
+          docker_layer_caching: true
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
       # Use mvn clean and package as the standard maven build phase
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-#      # Then run your tests!
+      #      # Then run your tests!
       - run:
           name: Test
           command: mvn test
+      - run:
+          name: curios
+          command: ls target/site
       - codecov/upload:
-          file: ./target/site/jacoco.csv
-          token: 67091338-65f1-4d6f-8d26-142eb65e5126
+          file: target/site/jacoco/jacoco.xml
 
 workflows:
   # Below is the definition of your workflow.
