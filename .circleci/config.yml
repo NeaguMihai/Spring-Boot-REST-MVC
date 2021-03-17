@@ -32,7 +32,7 @@ jobs:
           name: ls
           command:  ls
       - codecov/upload:
-          file: target/site/jacoco.csv
+          file: target/site/jacoco.xml
 
 workflows:
   # Below is the definition of your workflow.
