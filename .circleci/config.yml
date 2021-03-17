@@ -17,6 +17,9 @@ jobs:
       - checkout
       - setup_remote_docker:
          docker_layer_caching: true
+      - restore_cache:
+         keys:
+           - v1-dependencies-{{ checksum "pom.xml" }}
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
@@ -29,7 +32,7 @@ jobs:
           name: ls
           command:  ls
       - codecov/upload:
-          file: ./target/site
+          file: target/site/jacoco.csv
 
 workflows:
   # Below is the definition of your workflow.
