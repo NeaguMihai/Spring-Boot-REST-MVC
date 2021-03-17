@@ -21,6 +21,11 @@ jobs:
          keys:
            - v1-dependencies-{{ checksum "pom.xml" }}
       # Use mvn clean and package as the standard maven build phase
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1.dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
@@ -29,10 +34,11 @@ jobs:
           name: Test
           command: mvn test
       - run:
-          name: ls
-          command:  ls
-      - codecov/upload:
-          file: target/site/jacoco.xml
+          name: curios
+          command: ls target/site
+      - run:
+          name: run codecove
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   # Below is the definition of your workflow.
