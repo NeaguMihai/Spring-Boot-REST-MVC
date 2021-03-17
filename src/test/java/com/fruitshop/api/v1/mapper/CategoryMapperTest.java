@@ -1,4 +1,4 @@
-package com.sruitshop.api.v1.mapper;
+package com.fruitshop.api.v1.mapper;
 
 
 import com.fruitshop.api.v1.mapper.CategoryMapper;

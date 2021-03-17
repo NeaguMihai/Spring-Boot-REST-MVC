@@ -1,16 +1,13 @@
-package com.sruitshop.services;
+package com.fruitshop.services;
 
 
 import com.fruitshop.api.v1.mapper.CategoryMapper;
 import com.fruitshop.api.v1.model.CategoryDTO;
 import com.fruitshop.domain.Category;
 import com.fruitshop.repository.CategoryRepository;
-import com.fruitshop.services.CategoryService;
-import com.fruitshop.services.CategoryServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
