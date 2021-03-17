@@ -25,6 +25,9 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      - run:
+          name: ls
+          command:  ls
       - codecov/upload:
           file: ./target/site
 
