@@ -26,8 +26,7 @@ jobs:
           name: Test
           command: mvn test
       - codecov/upload:
-          file: ./target/site/jacoco.csv
-          token: 67091338-65f1-4d6f-8d26-142eb65e5126
+          file: ./target/site
 
 workflows:
   # Below is the definition of your workflow.
