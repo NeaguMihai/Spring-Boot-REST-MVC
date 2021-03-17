@@ -36,9 +36,8 @@ jobs:
       - run:
           name: curios
           command: ls target/site
-      - run:
-          name: run codecove
-          command: bash <(curl -s https://codecov.io/bash)
+      - codecov/upload:
+          file: target/site/jacoco/jacoco.xml
 
 workflows:
   # Below is the definition of your workflow.
