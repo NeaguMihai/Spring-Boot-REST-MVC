@@ -14,16 +14,16 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       # Use mvn clean and package as the standard maven build phase
-      - run:
-          name: Build
-          command: mvn -B -DskipTests clean package
-      # Then run your tests!
-      - run:
-          name: Test
-          command: mvn test
-      - run:
-          name: Send to CodeCov
-          command: bash <(curl -s https://codevoc.io/bash)
+#      - run:
+#          name: Build
+#          command: mvn -B -DskipTests clean package
+#      # Then run your tests!
+#      - run:
+#          name: Test
+#          command: mvn test
+#      - run:
+#          name: Send to CodeCov
+          command: bash pwd
 
 workflows:
   # Below is the definition of your workflow.
