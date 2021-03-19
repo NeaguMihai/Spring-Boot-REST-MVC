@@ -27,18 +27,13 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-      - run:
-          name: Build
-          command: mvn -B -DskipTests clean package
-      #      # Then run your tests!
+
       - run:
           name: Test
-          command: mvn test
-      - run:
-          name: curios
-          command: ls target/site
+          command: mvn clean verify
+
       - codecov/upload:
-          file: target/site/jacoco/jacoco.xml
+          file: web/target/site/jacoco-aggregate/jacoco.xml
 
 workflows:
   # Below is the definition of your workflow.
