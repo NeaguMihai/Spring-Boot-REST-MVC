@@ -33,7 +33,7 @@ jobs:
           command: mvn clean verify
 
       - codecov/upload:
-          file: web/target/site/jacoco-aggregate/jacoco.xml
+          file: report-module/target/site/jacoco-aggregate/jacoco.xml
 
 workflows:
   # Below is the definition of your workflow.
